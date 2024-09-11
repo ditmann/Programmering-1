@@ -1,0 +1,1 @@
+print("Hello World") # skriver ut en streng til terminalen

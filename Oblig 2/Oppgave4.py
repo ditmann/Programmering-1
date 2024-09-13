@@ -3,16 +3,17 @@ tolkienSineBøker = ["Farmer Giles og Ham", "Lord of The rings The Fellowship of
 tempListe = []
 søkeord = "Lord of The rings"
 
-#en måte å printe ut alle elementene som inneholder en stregn i lista
+
+#en måte å printe ut alle elementene som inneholder en stregn i lista:
+print("en måte å gjøre det på")
 for Bok in tolkienSineBøker:
     
     if søkeord in Bok:
         print(Bok)
 
 #en annen måte å gjøre det på:
-for Bok in tolkienSineBøker:
-    if søkeord in Bok:
-        tempListe.append(Bok)
-
-
-print(tempListe)    
+print("enda en måte å gjøre det på")
+for bokTall in range(len(tolkienSineBøker)):
+    
+    if søkeord in tolkienSineBøker[bokTall]:
+        print(tolkienSineBøker[bokTall])

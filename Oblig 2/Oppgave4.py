@@ -6,13 +6,14 @@ søkeord = "Lord of The rings"
 #en måte å printe ut alle elementene som inneholder en stregn i lista
 for Bok in tolkienSineBøker:
     
-    if søkeord in Bok:
+    if søkeord.lower() in Bok.lower():
         print(Bok)
 
-#en annen måte å gjøre det på:
-for Bok in tolkienSineBøker:
-    if søkeord in Bok:
-        tempListe.append(Bok)
 
+#måte 2 med indexer
+for boktall in tolkienSineBøker:
 
-print(tempListe)    
+    if søkeord in boktall:
+        print(tolkienSineBøker)
+    
+    print(boktall)

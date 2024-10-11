@@ -1,10 +1,9 @@
 #lager dictionaries av filmene og setter de i en liste
-inception = {"year" : 2010, "rating" : 8.7,}
-insideOut = {"year": 2015, "rating" :8.1,}
-conAir = {"year": 1997, "rating" :6.9}
-lFilmer = [inception,insideOut,conAir]
-
-
+lFilmer = [
+    {"name": "inception", "year" : 2010, "rating" : 8.7,},
+    {"name": "insideOut","year": 2015, "rating" :8.1,} ,
+    {"name": "conAir", "year": 1997, "rating" :6.9},
+    ]
 
 
 #funksjon for åspørre om filmer så legge de til
@@ -15,5 +14,7 @@ def filmInfo():
     nyFilm(name,year,rating,)
 
 def nyFilm(name,year,rating):
-    
+    lFilmer.append({"name":name, "year": year, "rating":rating,})
+    print(lFilmer)
 
+filmInfo()

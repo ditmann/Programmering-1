@@ -1,3 +1,9 @@
+#""" 
+# Dette er mest spagetti kode jeg har laget noen gang
+#"""
+
+
+
 #lager dictionaries av filmene og setter de i en liste
 lFilmer = [
     {"name": "inception", "year" : 2010, "rating" : 8.7,},
@@ -9,15 +15,19 @@ lFilmer = [
 #funksjon for åspørre om filmer så legge de til
 def filmInfo():
     name = input("hva heter filmen?")
-    year = (input("hvilket år ble filmen utgitt?"))
-    rating = (input("fra 1-10 hvor god var den?"))
-    if rating == "":
+    year = int(input("hvilket år ble filmen utgitt? (må være heltall)"))
+    rating = float((input("fra 1-10 hvor god var den? (må være tall, 0 = har ikke rating)")))
+    if rating == 0:
         rating = 5
     nyFilm(name,year,rating,)
 
 def nyFilm(name,year,rating):
     lFilmer.append({"name":name, "year": year, "rating":rating,})
     print(lFilmer)
+
+#kaller på legg til filmer
+filmInfo()
+
 
 #printer ut filmer i en setning med info
 def utskrift():
@@ -33,8 +43,40 @@ def gjennomRating():
         n= n + 1 
     return(ratingSUM/n)
 
+#tar inn en liste og årstall og lager en ny liste med filmer fra det året
+def filmerÅr(liste,år):
+    nyliste = []
+    for filmer in liste:
+        if filmer["year"] == år:
+            nyliste.append(filmer)
+    return(nyliste)
+
+
+#sender inn en liste med filmer og år så får alle filmene fra det året ut
+print(filmerÅr(lFilmer,2010))
+
+#kaller på gjennomsnitts funksjonen
 gjennomsnitt = gjennomRating()
 print(gjennomsnitt)
+
+#leser av en fil og skriver det ut i terminal
+def lesFil(filnavn):
+    with open(filnavn, mode="r") as f:
+        info = f.read()
+    print(info)
+
+
+#lager text fil og skriver i den
+def skrivTiltxt(liste,filnavn):
+    with open(f"{filnavn}.txt",mode="wt")as f:
+        for movies in liste:
+            f.write(f"{movies["name"]} - {movies["year"]} has a rating of {movies["rating"]}\n")
+    lesFil(f"{filnavn}.txt")
+
+#sender liste og navn på txt fil til funksjon
+skrivTiltxt(lFilmer,"gaming")
+
+
 
 
 

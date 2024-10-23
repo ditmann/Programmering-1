@@ -16,5 +16,7 @@ top_r_corner = '\u2510'
 
 card = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + "5  " + hjerte + vert_line + "\n" + vert_line + hjerte + "  5" + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
 
-
+#lager kortstokken
+kortstokk =[]
+while cards
 

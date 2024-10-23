@@ -4,7 +4,7 @@ hjerte = "\u2665"
 kløver = "\u2663"
 ruter = "\u2666"
 spar = "\u2660"
-number = 5
+number = "5"
 
 
 hor_line = '\u2500'
@@ -14,24 +14,7 @@ top_l_corner = '\u250C'
 bot_r_corner = '\u2518'
 top_r_corner = '\u2510'
 
-card = f"""{top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n"} 
-{+ vert_line + number + hjerte + vert_line}
+card = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + "5  " + hjerte + vert_line + "\n" + vert_line + hjerte + "  5" + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
 
 
 
-test """ 
-print(card)
-
-
-
-print("\u2665")
-print("\u2663")
-print("\u2666")
-print("\u2660")
-
-print("""
------
-| \u2665 |
-| 5 |
------         
-""")

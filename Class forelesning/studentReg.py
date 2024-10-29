@@ -20,3 +20,6 @@ print(nilsNilsen.getTotalCredits())
 
 #med ekstern funksjon
 print(cf.calculateTotalCredits(nilsNilsen.courses))
+
+
+print(nilsNilsen.__init__.__doc__)

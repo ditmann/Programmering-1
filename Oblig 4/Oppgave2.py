@@ -25,40 +25,63 @@ typeKort=["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
 #laer kortstokken
 class Cards:
           
-    def __init__(self):
-        self.kortstokk = []
-        self.dealerCards = []
-        self.playerCards = []
-
-        for slag in slagAvKort:
-            for typer in typeKort:
-                self.kortstokk.append(slag + typer)
-                       
+    def __init__(self,):
+        self.cards = []
+        self.points = 0
 
     def nykortstokk(self):
-        self.kortstokk = []
+        self.kort = []
         for slag in slagAvKort:
             for typer in typeKort:
-                self.kortstokk.append(slag + typer)
+                self.kort.append(slag + typer)
 
     def shuffle(self):
-        rng.shuffle(self.kortstokk)
+        rng.shuffle(self.kort)
 
-    def drawPlayer(self):
-        self.playerCards.append(self.kortstokk[0])
-        del self.kortstokk[0]
+    def draw(self):
+        self.cards.append(deck.kort[0])
+        del deck.kort[0]
 
-    def drawDealer(self):
-        self.dealerCards.append(self.kortstokk[0])
-        del self.kortstokk[0]
+    def getPoints(self):
+        for cards in self.cards:
+            if cards[-1] == "2":
+                self.points += 2
+            elif cards [-1] == "3":
+                self.points += 3
+            elif cards [-1] == "4":
+                self.points += 4
+            elif cards [-1] == "5":
+                self.points += 5
+            elif cards [-1] == "6":
+                self.points += 6
+            elif cards [-1] == "7":
+                self.points += 7
+            elif cards [-1] == "8":
+                self.points += 8
+            elif cards [-1] == "9":
+                self.points += 9
+            elif cards [-1] == "10" or "J" or "Q" or "K":
+                self.points += 10
+            elif cards [-1] == "a":
+                self.points += 11 
+                 
 
-    def points(self):
-        self.
+        return self.points
 
-library = Cards()
 
-print(library.playerCards)
-library.shuffle()
+deck = Cards()
+deck.nykortstokk()
+deck.shuffle()
+dealer = Cards()
+player = Cards()
+
+player.draw()
+print(player.cards)
+
+print(player.getPoints())
+
+
+
 
 
 

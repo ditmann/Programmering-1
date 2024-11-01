@@ -17,35 +17,50 @@ card = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner +
 print(card)
 
 #lister for å holde litt kontroll
-verdiPåKort = [2,3,4,5,6,7,8,9,10,10,10,11]
 slagAvKort = [hjerte,spar,kløver,ruter]
 typeKort=["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
-player = []
-dealer = []
+
         
 
 #laer kortstokken
-class Kortstokk:
+class Cards:
           
-          def __init__(self):
-             self.kortstokk = []
+    def __init__(self):
+        self.kortstokk = []
+        self.dealerCards = []
+        self.playerCards = []
 
-             for slag in slagAvKort:
-                  for typer in typeKort:
-                       self.kortstokk.append(slag + typer)
+        for slag in slagAvKort:
+            for typer in typeKort:
+                self.kortstokk.append(slag + typer)
                        
-                       
-          def stokk(deck):
-              rng.shuffle(deck.kortstokk)          
-        
-class Hands:
-     def __init__(self):
-          self.cards = []
-            
 
-deck = Kortstokk()
+    def nykortstokk(self):
+        self.kortstokk = []
+        for slag in slagAvKort:
+            for typer in typeKort:
+                self.kortstokk.append(slag + typer)
 
-print(deck.kortstokk)
-deck.stokk()
+    def shuffle(self):
+        rng.shuffle(self.kortstokk)
 
-print(deck.kortstokk)
+    def drawPlayer(self):
+        self.playerCards.append(self.kortstokk[0])
+        del self.kortstokk[0]
+
+    def drawDealer(self):
+        self.dealerCards.append(self.kortstokk[0])
+        del self.kortstokk[0]
+
+    def points(self):
+        self.
+
+library = Cards()
+
+print(library.playerCards)
+library.shuffle()
+
+
+
+
+

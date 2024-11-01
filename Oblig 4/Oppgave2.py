@@ -1,3 +1,5 @@
+import random as rng
+
 #symboler
 hjerte = "\u2665"
 kløver = "\u2663"
@@ -15,34 +17,35 @@ card = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner +
 print(card)
 
 #lister for å holde litt kontroll
-slagAvKort = [hjerte,spar,kløver,ruter]
 verdiPåKort = [2,3,4,5,6,7,8,9,10,10,10,11]
-typeKort=["a","1","2","3","4","5","6","7","8","9","10","J","Q","K"]
-kortstokk = []
-
-
-#klassen som lager kortene
-class Kort:
-    def __init__(self,slag,navn,verdi,):
-        self.slag = slag
-        self.verdi = verdi
-
-        
+slagAvKort = [hjerte,spar,kløver,ruter]
+typeKort=["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
+player = []
+dealer = []
         
 
 #laer kortstokken
 class Kortstokk:
-        def __init__(self):
+          
+          def __init__(self):
              self.kortstokk = []
 
              for slag in slagAvKort:
                   for typer in typeKort:
                        self.kortstokk.append(slag + typer)
-             
+                       
+                       
+          def stokk(deck):
+              rng.shuffle(deck.kortstokk)          
         
-            
+class Hands:
+     def __init__(self):
+          self.cards = []
             
 
-alleKort = Kortstokk()
+deck = Kortstokk()
 
-print(alleKort.kortstokk)
+print(deck.kortstokk)
+deck.stokk()
+
+print(deck.kortstokk)

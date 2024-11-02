@@ -13,8 +13,8 @@ bot_r_corner = '\u2518'
 top_r_corner = '\u2510'
 number = "5"
 
-card = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + "5  " + hjerte + vert_line + "\n" + vert_line + hjerte + "  5" + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
-print(card)
+cardBack = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + kløver + "  " + hjerte + vert_line + "\n" + vert_line + ruter + "  "+spar + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
+print(cardBack)
 
 #lister for å holde litt kontroll
 slagAvKort = [hjerte,spar,kløver,ruter]
@@ -29,20 +29,27 @@ class Cards:
         self.cards = []
         self.points = 0
 
+
     def nykortstokk(self):
         self.kort = []
         for slag in slagAvKort:
             for typer in typeKort:
                 self.kort.append(slag + typer)
 
+
     def shuffle(self):
         rng.shuffle(self.kort)
+
 
     def draw(self):
         self.cards.append(deck.kort[0])
         del deck.kort[0]
+        
+
 
     def getPoints(self):
+        self.points = 0
+        ace = 0
         for cards in self.cards:
             if cards[-1] == "2":
                 self.points += 2
@@ -60,28 +67,50 @@ class Cards:
                 self.points += 8
             elif cards [-1] == "9":
                 self.points += 9
+            elif cards [-1] == "A":
+                self.points += 11
+                ace += 1
             elif cards [-1] == "10" or "J" or "Q" or "K":
                 self.points += 10
-            elif cards [-1] == "a":
-                self.points += 11 
-                 
+
+        while self.points > 21 and ace > 0:
+            self.points -= 10
+            ace -= 1
 
         return self.points
 
+def begin():
+    player.draw()
+    dealer.draw()
+    player.draw()
+    dealer.draw()
 
+#def paintCard(cardList):
+#    for card in cardList:
+#        type = card[0]
+#        number = card[-1]
+#        painting = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + number+"  "+ type + vert_line + "\n" + vert_line + type + "  "+number+ vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
+#        return painting
+#def table():
+#    print(f"""
+#Dealer:
+#{paintCard(dealer.cards)}
+#{cardBack}""")
+
+
+
+
+
+#spillet   
+gaming = True     
 deck = Cards()
 deck.nykortstokk()
 deck.shuffle()
 dealer = Cards()
 player = Cards()
+begin()
 
-player.draw()
-print(player.cards)
-
-print(player.getPoints())
-
-
-
+#while gaming == True:
 
 
 

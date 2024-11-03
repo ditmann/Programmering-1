@@ -1,6 +1,7 @@
 import random as rng
 import time
 
+
 #symboler
 hjerte = "\u2665"
 kløver = "\u2663"
@@ -14,8 +15,9 @@ bot_r_corner = '\u2518'
 top_r_corner = '\u2510'
 number = "5"
 
-cardBack = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + kløver + "  " + hjerte + vert_line + "\n" + vert_line + ruter + "  "+spar + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
-print(cardBack)
+#tester å tegne kort
+#cardBack = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + kløver + "  " + hjerte + vert_line + "\n" + vert_line + ruter + "  "+spar + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
+#print(cardBack)
 
 #lister for å holde litt kontroll
 slagAvKort = [hjerte,spar,kløver,ruter]
@@ -45,10 +47,6 @@ class Cards:
     def draw(self):
         self.cards.append(deck.kort[0])
         del deck.kort[0]
-
-
-    def print(self):
-        print(self.cards)
 
 
     def getPoints(self):
@@ -82,47 +80,98 @@ class Cards:
             ace -= 1
 
         return self.points
+    
+    def botHitter(self):
+        score = self.getPoints()
+        print(f"dealer cards {dealer.cards} points: {score}\n")
+        while score < 17:
+            self.draw()
+            time.sleep(1)
+            print("HIT")
+            score = self.getPoints()
+            time.sleep(1)
+            print(f"dealer cards: {self.cards} points: {self.getPoints()}\n")
+    
+    def playing(self):
+        stand = False
+        points = self.getPoints()
+        while stand == False and points < 20 or stand == True and points > 20 :
+            choise = (input("1-HIT or 2-Stand?\n"))
+            if choise == "1":
+                self.draw()
+                points = self.getPoints()
+                print(f"your cards: {self.cards} Points: {points}")
 
+                time.sleep(2)
+            elif choise == "2":
+                stand = True
+                time.sleep(2)
+            else:
+                print("hit or stand")
+                self.playing()
+
+# setter alt klart med tankte på hvem som har vhilke kort
 def begin():
     player.draw()
     dealer.draw()
     player.draw()
     dealer.draw()
 
+#printer statusen, hvem har hva
 def status():
     print("dealer shows card")
     print(dealer.cards[0])
-    print(f"player cards value: {player.getPoints()}")
-    player.print()
-
-def move():
-    choise = int(input("1-HIT or 2-Stand?\n"))
-    if choise == 1:
-        player.draw()
-        status()
-        time.sleep(2)
-        
-    elif choise == 2:
-        print("stand")
+    print(f"player cards")
+    print(f"{player.cards} value: {player.getPoints()}")
 
 
-    
+def whowins():
+    scoreDealer = dealer.getPoints()
+    scorePlayer = player.getPoints()
+    time.sleep(1)
+    if scorePlayer == scoreDealer:
+        print(f"player score: {player.points}\ndealer score: {dealer.points}\nLOL")
+    elif scoreDealer < scorePlayer and scoreDealer < 22 and scorePlayer <22 or scoreDealer > 21:
+        print(f"YOU WIN!!")
+    elif scoreDealer > scorePlayer and scoreDealer < 22 and scorePlayer <22 or scorePlayer > 21:
+        print("YOU LOSE")
+    elif scoreDealer > 21 and scorePlayer > 21:
+        print(f"player score: {player.points}\ndealer score: {dealer.points}\nLOL")
 
 
-    
+def again():
+    global gaming
+    print(f"play again press ENTER")
+    string = input()
+    if string != "":
+        gaming = False
 
-#spillet   
-gaming = True     
+
+
+
+
+#bygger spillet       
 deck = Cards()
 deck.nykortstokk()
 deck.shuffle()
-dealer = Cards()
-player = Cards()
 
 
-begin()
-status()
-move()
+
+gaming = True
+print("WELCOME! to OBLIG_4 BY Adrian_Ditmasen BJ .;,,,;.\n")
+while gaming == True:
+    dealer = Cards()
+    player = Cards()
+    begin()
+    status()
+    player.playing()
+    dealer.botHitter()
+    whowins()
+    again()
+    
+
+
+
 
 #while gaming == True:
 

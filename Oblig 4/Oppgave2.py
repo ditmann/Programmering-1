@@ -121,7 +121,7 @@ def begin():
 def status():
     print("dealer shows card")
     print(dealer.cards[0])
-    print(f"player cards")
+    print(f"\nplayer cards")
     print(f"{player.cards} value: {player.getPoints()}")
 
 
@@ -158,7 +158,7 @@ deck.shuffle()
 
 
 gaming = True
-print("WELCOME! to OBLIG_4 BY Adrian_Ditmasen BJ .;,,,;.\n")
+print("WELCOME!\nOBLIG_4 BJ by Adrian_Ditmasen .;,,,;.\n")
 while gaming == True:
     dealer = Cards()
     player = Cards()

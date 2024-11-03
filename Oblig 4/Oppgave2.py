@@ -1,4 +1,5 @@
 import random as rng
+import time
 
 #symboler
 hjerte = "\u2665"
@@ -44,7 +45,10 @@ class Cards:
     def draw(self):
         self.cards.append(deck.kort[0])
         del deck.kort[0]
-        
+
+
+    def print(self):
+        print(self.cards)
 
 
     def getPoints(self):
@@ -85,21 +89,27 @@ def begin():
     player.draw()
     dealer.draw()
 
-#def paintCard(cardList):
-#    for card in cardList:
-#        type = card[0]
-#        number = card[-1]
-#        painting = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + number+"  "+ type + vert_line + "\n" + vert_line + type + "  "+number+ vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
-#        return painting
-#def table():
-#    print(f"""
-#Dealer:
-#{paintCard(dealer.cards)}
-#{cardBack}""")
+def status():
+    print("dealer shows card")
+    print(dealer.cards[0])
+    print(f"player cards value: {player.getPoints()}")
+    player.print()
+
+def move():
+    choise = int(input("1-HIT or 2-Stand?\n"))
+    if choise == 1:
+        player.draw()
+        status()
+        time.sleep(2)
+        
+    elif choise == 2:
+        print("stand")
 
 
+    
 
 
+    
 
 #spillet   
 gaming = True     
@@ -108,7 +118,11 @@ deck.nykortstokk()
 deck.shuffle()
 dealer = Cards()
 player = Cards()
+
+
 begin()
+status()
+move()
 
 #while gaming == True:
 

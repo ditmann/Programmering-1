@@ -1,7 +1,6 @@
 import random as rng
 import time
 
-
 #symboler
 hjerte = "\u2665"
 kløver = "\u2663"
@@ -147,14 +146,10 @@ def again():
         gaming = False
 
 
-
-
-
 #bygger spillet       
 deck = Cards()
 deck.nykortstokk()
 deck.shuffle()
-
 
 
 gaming = True
@@ -168,14 +163,3 @@ while gaming == True:
     dealer.botHitter()
     whowins()
     again()
-    
-
-
-
-
-#while gaming == True:
-
-
-
-
-

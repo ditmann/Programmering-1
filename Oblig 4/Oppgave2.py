@@ -135,7 +135,7 @@ def bet():
 def status():
     print("\ndealer shows card")
     print(dealer.cards[0])
-    print(f"\nplayer cards")
+    print(f"player cards")
     print(f"{player.cards} value: {player.getPoints()}")
 
 
@@ -173,10 +173,6 @@ dealer = Cards()
 player = Cards()
 
 gaming = True
-print("WELCOME!\nOBLIG_4 BJ by Adrian_Ditmasen .;,,,;.\n")
-while gaming == True:
-    dealer = Cards()
-    player = Cards()
 print("WELCOME! to OBLIG_4 BY Adrian_Ditmasen BJ .;,,,;.\n")
 time.sleep(2)
 

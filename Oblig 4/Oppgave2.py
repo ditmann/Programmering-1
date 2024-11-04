@@ -147,8 +147,7 @@ def whowins():
         print(f"player score: {player.points}\ndealer score: {dealer.points}\nLOL")
         print(f"you get ur {betMoney}¤ back")
     elif scoreDealer < scorePlayer and scoreDealer < 22 and scorePlayer <22 or scoreDealer > 21:
-        win = 2*betMoney
-        player.changeMoney(win)
+        player.changeMoney(betMoney)
         print(f"YOU WIN!!\n{2*betMoney}¤")
     elif scoreDealer > scorePlayer and scoreDealer < 22 and scorePlayer <22 or scorePlayer > 21:
         win = -betMoney

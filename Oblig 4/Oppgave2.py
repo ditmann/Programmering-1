@@ -186,4 +186,4 @@ while gaming == True and player.money > 0:
     dealer.botHitter()
     whowins()
     again()
-print("THE GAME HAS FINNISHED")
+print("THE GAME HAS FINISHED")

@@ -173,19 +173,16 @@ dealer = Cards()
 player = Cards()
 
 gaming = True
-<<<<<<< HEAD
 print("WELCOME!\nOBLIG_4 BJ by Adrian_Ditmasen .;,,,;.\n")
 while gaming == True:
     dealer = Cards()
     player = Cards()
-=======
 print("WELCOME! to OBLIG_4 BY Adrian_Ditmasen BJ .;,,,;.\n")
 time.sleep(2)
 
 while gaming == True and player.money > 0:
     dealer.flushHand()
     player.flushHand()
->>>>>>> 4301cd507e1ebcf3ab55cf0d0487303bd529c5e0
     begin()
     bet()
     status()

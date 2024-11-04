@@ -21,8 +21,7 @@ number = "5"
 #lister for å holde litt kontroll
 slagAvKort = [hjerte,spar,kløver,ruter]
 typeKort=["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
-
-        
+    
 
 #laer kortstokken
 class Cards:
@@ -30,7 +29,7 @@ class Cards:
     def __init__(self,):
         self.cards = []
         self.points = 0
-
+        self.money = 100
 
     def nykortstokk(self):
         self.kort = []
@@ -38,15 +37,18 @@ class Cards:
             for typer in typeKort:
                 self.kort.append(slag + typer)
 
+    def changeMoney(self,value):
+        self.money += value
+
+    def flushHand(self):
+        self.cards = []
 
     def shuffle(self):
         rng.shuffle(self.kort)
 
-
     def draw(self):
         self.cards.append(deck.kort[0])
         del deck.kort[0]
-
 
     def getPoints(self):
         self.points = 0
@@ -83,7 +85,7 @@ class Cards:
     def botHitter(self):
         score = self.getPoints()
         print(f"dealer cards {dealer.cards} points: {score}\n")
-        while score < 17:
+        while score < 17 and player.getPoints() < 21:
             self.draw()
             time.sleep(1)
             print("HIT")
@@ -94,20 +96,18 @@ class Cards:
     def playing(self):
         stand = False
         points = self.getPoints()
-        while stand == False and points < 20 or stand == True and points > 20 :
-            choise = (input("1-HIT or 2-Stand?\n"))
+        time.sleep(2)
+        while stand == False and points < 21 or stand == True and points > 21 :
+            choise = (input("\nHit: press ENTER\nStand: write 1\n"))
             if choise == "1":
-                self.draw()
-                points = self.getPoints()
-                print(f"your cards: {self.cards} Points: {points}")
-
-                time.sleep(2)
-            elif choise == "2":
                 stand = True
                 time.sleep(2)
             else:
-                print("hit or stand")
-                self.playing()
+                self.draw()
+                points = self.getPoints()
+                print(f"your cards: {self.cards} Points: {points}")
+                time.sleep(2)
+
 
 # setter alt klart med tankte på hvem som har vhilke kort
 def begin():
@@ -116,9 +116,24 @@ def begin():
     player.draw()
     dealer.draw()
 
+#viser penger og sette en bet
+def bet():
+    global betMoney
+    print(f"Money: {player.money} ¤")
+    time.sleep(1)
+    try:
+        betMoney = 0
+        betMoney = int(input("bet?\n"))
+        if betMoney > player.money or betMoney <= 0:
+            print("Use your own money!\n")
+            bet()
+    except:
+        print("\nGive me a number!")
+        bet()
+
 #printer statusen, hvem har hva
 def status():
-    print("dealer shows card")
+    print("\ndealer shows card")
     print(dealer.cards[0])
     print(f"player cards")
     print(f"{player.cards} value: {player.getPoints()}")
@@ -130,13 +145,18 @@ def whowins():
     time.sleep(1)
     if scorePlayer == scoreDealer:
         print(f"player score: {player.points}\ndealer score: {dealer.points}\nLOL")
+        print(f"you get ur {betMoney}¤ back")
     elif scoreDealer < scorePlayer and scoreDealer < 22 and scorePlayer <22 or scoreDealer > 21:
-        print(f"YOU WIN!!")
+        win = 2*betMoney
+        player.changeMoney(win)
+        print(f"YOU WIN!!\n{2*betMoney}¤")
     elif scoreDealer > scorePlayer and scoreDealer < 22 and scorePlayer <22 or scorePlayer > 21:
-        print("YOU LOSE")
+        win = -betMoney
+        player.changeMoney(win)
+        print(f"YOU LOSE\n{betMoney}¤")
     elif scoreDealer > 21 and scorePlayer > 21:
         print(f"player score: {player.points}\ndealer score: {dealer.points}\nLOL")
-
+        print(f"you get ur {betMoney}¤ back")
 
 def again():
     global gaming
@@ -150,16 +170,21 @@ def again():
 deck = Cards()
 deck.nykortstokk()
 deck.shuffle()
-
+dealer = Cards()
+player = Cards()
 
 gaming = True
 print("WELCOME! to OBLIG_4 BY Adrian_Ditmasen BJ .;,,,;.\n")
-while gaming == True:
-    dealer = Cards()
-    player = Cards()
+time.sleep(2)
+
+while gaming == True and player.money > 0:
+    dealer.flushHand()
+    player.flushHand()
     begin()
+    bet()
     status()
     player.playing()
     dealer.botHitter()
     whowins()
     again()
+print("THE GAME HAS FINNISHED")

@@ -14,8 +14,13 @@ class Vindu(QWidget):
         label1.setText("Hello World")
         
         labelImg = QLabel()
-        pixmap = QPixmap("gmaer.jpg")
+        pixmap = QPixmap("Gamer.jpg")
         labelImg.setPixmap(pixmap)
+
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+      #  layout.addWidget(label1)
+        layout.addWidget(labelImg)
 
 app = QApplication(sys.argv)
 

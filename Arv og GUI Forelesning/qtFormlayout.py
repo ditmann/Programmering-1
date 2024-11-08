@@ -6,6 +6,7 @@ class Hovedvindu(QWidget):
         super().__init__()
 
         self.setWindowTitle("oppmeldingsskjema")
+        self.setGeometry(100,100,300,100)
 
         layout = QFormLayout()
         self.setLayout(layout)
@@ -14,6 +15,7 @@ class Hovedvindu(QWidget):
         layout.addRow("Epost", QLineEdit(self))
         layout.addRow("passord", QLineEdit(self, echoMode = QLineEdit.EchoMode.Password))
         layout.addRow("gjenta Passord", QLineEdit(self, echoMode = QLineEdit.EchoMode.Password) )
+        layout.addRow(QPushButton("Meld deg opp"))
         self.show()
 
 if __name__ == "__main__":

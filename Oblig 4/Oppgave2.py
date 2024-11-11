@@ -15,8 +15,8 @@ top_r_corner = '\u2510'
 number = "5"
 
 #tester å tegne kort
-#cardBack = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + kløver + "  " + hjerte + vert_line + "\n" + vert_line + ruter + "  "+spar + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
-#print(cardBack)
+cardBack = top_l_corner + hor_line + hor_line + hor_line + hor_line + top_r_corner + "\n" + vert_line + kløver + "  " + hjerte + vert_line + "\n" + vert_line + ruter + "  "+spar + vert_line + "\n" + bot_l_corner + hor_line + hor_line + hor_line + hor_line + bot_r_corner
+print(cardBack)
 
 #lister for å holde litt kontroll
 slagAvKort = [hjerte,spar,kløver,ruter]

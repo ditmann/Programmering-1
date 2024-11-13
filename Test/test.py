@@ -25,13 +25,14 @@ all_wares = {
 
 
 
-def add_number_of_ware_to_shopping_cart(ware_key, ware, shopping_cart, number_of_ware=1):
-    shopping_cart[ware_key] = ware
-    ware["number_in_stock"] = number_of_ware
+def calculate_average_ware_rating(ware):
+    rating = 0
+    n = 0
+    for number in ware["ratings"]:
+        rating += number
+        n += 1
+        print(rating,number,n)
+    return rating/n
 
 
-shopping_cart = {}
-
-# Forsøker å legge til 1 amd processor, 2 playstation 5 konsoller og 3 hdmi kabler
-add_number_of_ware_to_shopping_cart("amd_processor", all_wares["amd_processor"], shopping_cart, 20)
-print(shopping_cart)
+print(f"Average rating for the AMD Processor: {calculate_average_ware_rating(all_wares['amd_processor'])}")

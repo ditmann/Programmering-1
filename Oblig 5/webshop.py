@@ -3,7 +3,13 @@ def print_ware_information(ware):
         print(info)
 
 def calculate_average_ware_rating(ware):
-    '''Returnerer den gjennomsnittlige ratingen for en spesifisert vare.'''
+    rating = 0
+    n = 0
+    for number in ware["ratings"]:
+        rating += number
+        n += 1
+        print(rating,number,n)
+    return rating/n
 
 def get_all_wares_in_stock(all_wares):
     stock = {}

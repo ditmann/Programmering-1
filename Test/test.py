@@ -23,14 +23,15 @@ all_wares = {
 }
 
 
-stock = {}
-for wares, info in all_wares.items():
-        if info["number_in_stock"] > 0:
-            stock[wares] = info
-    
-     
-      
 
-print (f"{stock}\n")
 
-#print (all_wares)
+def add_number_of_ware_to_shopping_cart(ware_key, ware, shopping_cart, number_of_ware=1):
+    shopping_cart[ware_key] = ware
+    ware["number_in_stock"] = number_of_ware
+
+
+shopping_cart = {}
+
+# Forsøker å legge til 1 amd processor, 2 playstation 5 konsoller og 3 hdmi kabler
+add_number_of_ware_to_shopping_cart("amd_processor", all_wares["amd_processor"], shopping_cart, 20)
+print(shopping_cart)

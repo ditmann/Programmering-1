@@ -17,9 +17,9 @@ def is_number_of_ware_in_stock(ware, number_of_ware):
     '''Returnerer en Boolean-verdi som representerer om et spesifisert antall av
     en gitt vare finnes på lager.'''
 
-def add_number_of_ware_to_shopping_cart(ware_key, ware, shopping_cart, number_of_ware):
-    '''Legger til et spesifisert antall av en gitt vare i en spesifisert
-    handlevogn.'''
+def add_number_of_ware_to_shopping_cart(ware_key, ware, shopping_cart, number_of_ware=1):
+    shopping_cart[ware_key] = ware
+    ware["number_in_stock"] = number_of_ware
 
 def calculate_shopping_cart_price(shopping_cart, all_wares, tax):
     '''Returnerer prisen av en handlevogn basert på varene i den.'''

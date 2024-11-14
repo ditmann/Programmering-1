@@ -25,14 +25,22 @@ all_wares = {
 
 
 
-def calculate_average_ware_rating(ware):
-    rating = 0
-    n = 0
-    for number in ware["ratings"]:
-        rating += number
-        n += 1
-        print(rating,number,n)
-    return rating/n
+def print_ware_information(ware):
+    '''Funksjonsbeskrivelse: Printer ut informasjon om en spesifisert vare.'''
+    for info in ware:
+        print(f"{info}: {ware[info]}")
+
+def get_all_wares_in_stock(all_wares):
+    '''Returnerer en dictionary med alle varer som er på lager.'''
+    stock = {}
+    for wares, info in all_wares.items():
+        if info["number_in_stock"] > 0:
+            stock[wares] = info
+    return stock
 
 
-print(f"Average rating for the AMD Processor: {calculate_average_ware_rating(all_wares['amd_processor'])}")
+
+all_wares_in_stock = get_all_wares_in_stock(all_wares)
+print(all_wares_in_stock)
+for ware in all_wares_in_stock.values():
+    print_ware_information(ware)

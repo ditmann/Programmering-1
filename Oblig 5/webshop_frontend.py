@@ -28,9 +28,11 @@ all_wares = {
 # Filtrer ut alle varer som er på lager og skriv ut informasjonen for hver av dem
 all_wares_in_stock = ws.get_all_wares_in_stock(all_wares)
 for ware in all_wares_in_stock.values():
+    print()
     ws.print_ware_information(ware)
 
 # Skriv ut den gjennomsnittlige ratingen for denne varen
+print()
 print(f"Average rating for the AMD Processor: {ws.calculate_average_ware_rating(all_wares['amd_processor'])}")
 print()
 

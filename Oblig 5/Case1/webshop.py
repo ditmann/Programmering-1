@@ -48,7 +48,6 @@ def calculate_shopping_cart_price(shopping_cart, all_wares, tax=1.25):
     '''Returnerer prisen av en handlevogn basert på varene i den.'''
     totalPrice = float(0)
     for things in shopping_cart:
-        print(things)
         numberWanted = all_wares[things]["number_in_stock"]
         price = all_wares[things]["price"]
         while numberWanted > 0:
@@ -59,14 +58,20 @@ def calculate_shopping_cart_price(shopping_cart, all_wares, tax=1.25):
 def can_afford_shopping_cart(shopping_cart_price, wallet):
     '''Returnerer en Boolean-verdi basert på om det er nok penger i en gitt
     lommebok for å kjøpe en handlevogn.'''
+    if shopping_cart_price <= Wallet.get_amount(wallet):
+        return True
+    else:
+        return False
 
 def buy_shopping_cart(shopping_cart, all_wares, wallet):
     '''Kjøper varene i en handlevogn. Parameterene defineres i oppgaven.'''
-    print(wallet)
     totalPrice = calculate_shopping_cart_price(shopping_cart, all_wares)
-    print(totalPrice)
     affordable = can_afford_shopping_cart(totalPrice,wallet)
-    print(Wallet.get_amount(wallet))
+    if affordable == True:
+        Wallet.subtract_amount(wallet, totalPrice)
+    else:
+        print(f"insufficient funding, wallet: {Wallet.get_amount(wallet)}, cart price: {totalPrice}")
+
 #------------------------------------------
 # Predefinerte funksjoner
 #------------------------------------------

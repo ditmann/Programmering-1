@@ -1,5 +1,42 @@
 from datetime import date
 
+class car:
+    def __init__(self, brand, model, price, year, month, new, km):
+        
+        self.brand = brand # streng
+        self.model = model # streng
+        self.price = price # float
+        self.year = year # int
+        self.month = month # int
+        self.new = new # int
+        self.km = km # int
+        #--------------------------------------------------------------------------------
+        ### tenker at det kan være letter å putte inn funksjonene:
+        
+        def print_car_information(self):
+            pass
+        
+        def get_car_age(self):
+            #her kunne man også laget en ny atributt som "self.age"
+            pass
+
+        def calculate_total_price(self):
+            #her kunne man også laget en ny atributt som "self.totalPrice"
+            pass
+
+        def create_car(self):
+            #dette hadde jo bare blitt å lage et nytt objekt, hadde ikke trengt en egen funkjson
+            pass
+
+        def next_eu_control(self):
+            #denne funksjonen kunne vært i klassen sin den bruker mye info fra klassen
+            pass
+
+        def is_new(self):
+            #denne funksjonen ville jeg også hatt i klassen, men kalt den Get_New eller noe lignende. Det er jo noe som omgår objektet så tenker den passer seg i klassen
+            pass
+    
+
 car_register = {
     "toyotaBZ4X": {
         "brand": "Toyota",
@@ -59,7 +96,6 @@ def get_car_age(car):
     return carAge
 
 def next_eu_control(car):
-   #dato objekt dokumentasjon ;D 
    nowYear = 2024
    nextEuYear = car["year"]
    while nextEuYear < nowYear:
@@ -68,9 +104,9 @@ def next_eu_control(car):
  
 
 def rent_car_monthly_price(car):
-    price = (car["price"])*0.4
+    price = (car["price"])*RENT_CAR_PERCENTAGE
     if car["new"] == True:
-        price += 1000
+        price += RENT_NEW_CAR_FEE
     return round(price,2)
 
 def calculate_total_price(car):
